@@ -37,7 +37,7 @@ if(!empty($_GET['url'])) {
     ];
 
     header("Content-Type: image/".$mime);
-    header("Cache-Control: max-age=".$maxage);
+    header("Cache-Control: public, max-age=".$maxage);
     header("Expires: ".date('D, d M Y h:i:s',($timestamp-$offset))." GMT");
     echo $req->send()->getResponse();
 
