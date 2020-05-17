@@ -6,10 +6,26 @@ require_once ('config.php');
 
 if(!empty($_GET['url'])) {
     $url = rawurldecode($_GET['url']);
+
+    $temp = explode('.',$url);
+    $listmime = [
+        'apng','jpg','jpeg','gif','bmp','tiff','webp'
+    ];
+    if(empty($_GET['mime'])) {
+        $etemp = end($temp);
+        if(!in_array($etemp,$listmime)) {
+            header('Content-Type: application/json');
+            echo '{"error":"can\'t detect mime type or maybe was not supported! please use parameter mime."}';
+            exit;
+        }
+        $mime = $etemp;
+    } else {
+        $mime = $_GET['mime'];
+    }
+
     $parse = parse_url($url);
     $offset = $gmt*60*60;
     $timestamp = time() + 60*60;
-    $mime = (empty($_GET['mime']) ? end(preg_split('/./',$url)) : $_GET['mime']);
 
     $req = new ParallelRequest;
     $req->request = $url;
@@ -36,12 +52,18 @@ if(!empty($_GET['url'])) {
           )
     ];
 
-    header("Content-Type: image/".$mime);
-    header("Cache-Control: public, max-age=".$maxage);
-    header("Expires: ".date('D, d M Y h:i:s',($timestamp-$offset))." GMT");
-    echo $req->send()->getResponse();
-
+    $response = $req->setHttpInfo('detail')->send()->getResponse();
+    if($response['code'] == 200) {
+        header("Content-Type: image/".$mime);
+        header("Content-Length: ".$response['info']['headers']['response']['Content-Length']);
+        header("Cache-Control: public, max-age=".$maxage);
+        header("Expires: ".date('D, d M Y h:i:s',($timestamp-$offset))." GMT");
+        header("Sec-Fetch-Dest: image");
+        echo $response['response'];
+    } else {
+        http_response_code($response['code']);
+    }
 } else {
     header('Content-Type: application/json');
-    echo '{"error":"wrong parameter! url is required."}';
+    echo '{"error":"wrong parameter! parameter url is required."}';
 }
