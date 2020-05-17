@@ -31,7 +31,7 @@ composer create-project aalfiann/img-spoof [my-app-name]
 ## Example
 
 This will GET image with spoofing referer.  
-See `example.php`.
+See `example.html`.
 
 ```html
 <html>
