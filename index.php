@@ -9,6 +9,7 @@ if(!empty($_GET['url'])) {
     $parse = parse_url($url);
     $offset = $gmt*60*60;
     $timestamp = time() + 60*60;
+    $mime = (empty($_GET['mime']) ? end(preg_split('/./',$url)) : $_GET['mime']);
 
     $req = new ParallelRequest;
     $req->request = $url;
@@ -35,6 +36,7 @@ if(!empty($_GET['url'])) {
           )
     ];
 
+    header("Content-Type: image/".$mime);
     header("Cache-Control: max-age=".$maxage);
     header("Expires: ".date('D, d M Y h:i:s',($timestamp-$offset))." GMT");
     echo $req->send()->getResponse();

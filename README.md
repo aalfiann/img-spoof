@@ -20,6 +20,14 @@ composer create-project aalfiann/img-spoof [my-app-name]
 **Note:**  
 - See `config.php` to adjust GMT time and max-age for cache.
 
+## Query Parameter
+- **url** : URL Image target.
+- **referer** : Set the referer image. [`optional`]
+- **mime** : Set the mime type of image (ex: png). [`optional`]
+
+**Note:**  
+- Mime will detect automatically if the url included extension.
+
 ## Example
 
 This will GET image with spoofing referer.  
