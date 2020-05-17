@@ -26,7 +26,7 @@ composer create-project aalfiann/img-spoof [my-app-name]
 - **mime** : Set the mime type of image (ex: png). [`optional`]
 
 **Note:**  
-- Mime will detect automatically if the url included extension.
+- Mime type will detect automatically if the url included extension.
 
 ## Example
 

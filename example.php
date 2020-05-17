@@ -1,7 +1,0 @@
-<html>
-    <head>
-    </head>
-    <body>
-    <img src="./index.php?referer=https://manganelo.com&url=https://s7.mkklcdnv7.com/mangakakalot/l2/love_parameter/chapter_112_qa/1.jpg">
-    </body>
-</html>

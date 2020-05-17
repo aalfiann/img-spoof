@@ -9,7 +9,7 @@ if(!empty($_GET['url'])) {
 
     $temp = explode('.',$url);
     $listmime = [
-        'apng','jpg','jpeg','gif','bmp','tiff','webp'
+        'apng','jpg','jpeg','gif','bmp','png','tiff','webp'
     ];
     if(empty($_GET['mime'])) {
         $etemp = end($temp);
