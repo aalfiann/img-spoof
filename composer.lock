@@ -1,0 +1,63 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "7f515804dd854ae8036a27c0b9cfa3d1",
+    "packages": [
+        {
+            "name": "aalfiann/parallel-request-php",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aalfiann/parallel-request-php.git",
+                "reference": "9837604fe568eb64aa7ba85b4ecb2652cf8746a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aalfiann/parallel-request-php/zipball/9837604fe568eb64aa7ba85b4ecb2652cf8746a6",
+                "reference": "9837604fe568eb64aa7ba85b4ecb2652cf8746a6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "aalfiann\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "M ABD AZIZ ALFIAN",
+                    "email": "aalfiann@gmail.com",
+                    "homepage": "https://github.com/aalfiann",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP class to create multiple request in parallel (non-blocking).",
+            "keywords": [
+                "async",
+                "curl",
+                "non-blocking",
+                "parallel",
+                "request"
+            ],
+            "time": "2019-05-10T19:39:38+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

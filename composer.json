@@ -1,0 +1,21 @@
+{
+    "name":"aalfiann/img-spoof",
+    "description":"This is a very simple and fast to get an image with spoofing referer.",
+    "keywords":["image", "spoof", "image-spoof", "referer-spoof", "referer-image"],
+    "authors":[
+        {
+            "name": "M ABD AZIZ ALFIAN",
+            "email": "aalfiann@gmail.com",
+            "homepage": "https://github.com/aalfiann",
+            "role": "Developer"
+        }
+    ],
+    "type":"framework",
+    "require": {
+        "php": ">=5.4",
+        "aalfiann/parallel-request-php": "^1.4"
+    },
+    "license":"MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
