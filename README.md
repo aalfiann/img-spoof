@@ -9,16 +9,16 @@ This is a very simple and fast to get an image with spoofing referer.
 ## Installation
 
 1. Install this package via [Composer](https://getcomposer.org/).
-```
-composer create-project aalfiann/img-spoof [my-app-name]
-```
+    ```
+    composer create-project aalfiann/img-spoof [my-app-name]
+    ```
 
 2. Upload to your server
 
 3. Done
 
 **Note:**  
-- See `config.php` to adjust GMT time and max-age for cache.
+- See `config.php` to set firewall, adjust GMT time and max-age for cache.
 
 ## Query Parameter
 - **url** : URL Image target.
@@ -38,7 +38,7 @@ See `example.html`.
     <head>
     </head>
     <body>
-    <img src="./index.php?referer=https://manganelo.com&url=https://s7.mkklcdnv7.com/mangakakalot/l2/love_parameter/chapter_112_qa/1.jpg">
+        <img src="./index.php?referer=https://manganelo.com&url=https://s7.mkklcdnv7.com/mangakakalot/l2/love_parameter/chapter_112_qa/1.jpg">
     </body>
 </html>
 ```
