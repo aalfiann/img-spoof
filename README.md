@@ -1,4 +1,4 @@
-# ParallelRequest PHP
+# img-spoof
 
 [![Version](https://img.shields.io/packagist/v/aalfiann/img-spoof.svg)](https://packagist.org/packages/aalfiann/img-spoof)
 [![Downloads](https://img.shields.io/packagist/dt/aalfiann/img-spoof.svg)](https://packagist.org/packages/aalfiann/img-spoof)
