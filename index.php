@@ -48,8 +48,13 @@ if(!empty($_GET['url'])) {
     }
 
     $parse = parse_url($url);
-    $offset = $gmt*60*60;
-    $timestamp = time() + 60*60;
+    
+    $referer = (empty($_GET['referer'])?'':rawurldecode($_GET['referer']));
+    $etag = 'W/"'.md5($url.$referer.$mime).'"';
+    if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) { 
+        header("HTTP/1.1 304 Not Modified"); 
+        exit;
+    }
 
     $req = new ParallelRequest;
     $req->request = $url;
@@ -71,18 +76,25 @@ if(!empty($_GET['url'])) {
             "Cookie: __cfduid=d491ad3fc1008f5af257f8cff238d09f31589283767",
             "Host: ".$parse['host'],
             "Postman-Token: fc32bbe8-ca22-4a62-8e70-3f134af29ea8,3d1c666c-56f9-48ba-93a3-32957c51ffbe",
-            "Referer: ".(empty($_GET['referer'])?'':rawurldecode($_GET['referer'])),
+            "Referer: ".$referer,
             "User-Agent: PostmanRuntime/7.15.2"
           )
     ];
 
     $response = $req->setHttpInfo('detail')->send()->getResponse();
+    $lsize = $response['info']['headers']['response']['Content-Length'];
     if($response['code'] == 200) {
+        header("HTTP/1.1 200 OK");
         header("Content-Type: image/".$mime);
-        header("Content-Length: ".$response['info']['headers']['response']['Content-Length']);
+        header("Content-Length: ".$lsize);
         header("Cache-Control: public, max-age=".$maxage);
-        header("Expires: ".date('D, d M Y h:i:s',($timestamp-$offset))." GMT");
+        header("Expires: ".gmdate('D, d M Y H:i:s',(time() + $maxage))." GMT");
+        header('Etag: '.$etag);
         header("Sec-Fetch-Dest: image");
+        header("Pragma: public");
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Etag');
         echo $response['response'];
     } else {
         http_response_code($response['code']);

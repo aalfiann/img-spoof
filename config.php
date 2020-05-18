@@ -2,7 +2,6 @@
     
 // configuration cache
 $maxage = 3600;
-$gmt = 7; // If your server datetime located in south east, so it means GMT+7.
 
 // firewall
 $firewall_origin = false;   // this to activate firewall (default is false)
