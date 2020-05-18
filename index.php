@@ -6,10 +6,10 @@ require_once ('vendor/autoload.php');
 require_once ('config.php');
 
 if (isset($_SERVER["HTTP_REFERER"])) {
-    if($firewall_origin) {
+    if($firewall_request) {
         $origin = parse_url($_SERVER["HTTP_REFERER"]);
         if(isset($origin['host'])) {
-            if (!in_array($origin["host"],$allow_origin)) {
+            if (!in_array($origin["host"],$allow_domain)) {
                 http_response_code(403);
                 header('Content-Type: application/json');
                 echo '{"error":"You don\'t have direct access to this service."}';
@@ -18,7 +18,7 @@ if (isset($_SERVER["HTTP_REFERER"])) {
         }
     }
 } else {
-    if($firewall_origin) {
+    if($firewall_request) {
         if(!$allow_no_referer) {
             http_response_code(403);
             header('Content-Type: application/json');
@@ -63,7 +63,7 @@ if(!empty($_GET['url'])) {
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
+        CURLOPT_TIMEOUT => $timeout,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_SSL_VERIFYPEER => false,

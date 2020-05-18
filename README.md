@@ -6,6 +6,11 @@
 
 This is a very simple and fast to get an image with spoofing referer.
 
+## Feature
+- Spoofing referer
+- Cache in browser
+- Firewall request
+
 ## Installation
 
 1. Install this package via [Composer](https://getcomposer.org/).
@@ -18,7 +23,7 @@ This is a very simple and fast to get an image with spoofing referer.
 3. Done
 
 **Note:**  
-- See `config.php` to set firewall, adjust GMT time and max-age for cache.
+- See `config.php` to set firewall and adjust max-age for cache.
 
 ## Query Parameter
 - **url** : URL Image target.
