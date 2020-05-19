@@ -12,7 +12,7 @@ if (isset($_SERVER["HTTP_REFERER"])) {
             if (!in_array($origin["host"],$allow_domain)) {
                 http_response_code(403);
                 header('Content-Type: application/json');
-                echo '{"error":"You don\'t have direct access to this service."}';
+                echo '{"code":"403","message":"You don\'t have direct access to this service!"}';
                 exit;
             }
         }
@@ -22,7 +22,7 @@ if (isset($_SERVER["HTTP_REFERER"])) {
         if(!$allow_no_referer) {
             http_response_code(403);
             header('Content-Type: application/json');
-            echo '{"error":"You don\'t have access to this service."}';
+            echo '{"code":"403","message":"You don\'t have direct access to this service!"}';
             exit;
         }
     }
@@ -38,8 +38,9 @@ if(!empty($_GET['url'])) {
     if(empty($_GET['mime'])) {
         $etemp = end($temp);
         if(!in_array($etemp,$listmime)) {
+            http_response_code(400);
             header('Content-Type: application/json');
-            echo '{"error":"can\'t detect mime type or maybe was not supported! please use parameter mime."}';
+            echo '{"code":"400","message":"Can\'t detect mime type or maybe was not supported! Please use parameter mime."}';
             exit;
         }
         $mime = $etemp;
@@ -66,6 +67,7 @@ if(!empty($_GET['url'])) {
     $req->options = [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
+        CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_MAXREDIRS => 10,
         CURLOPT_TIMEOUT => $timeout,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -104,6 +106,7 @@ if(!empty($_GET['url'])) {
         http_response_code($response['code']);
     }
 } else {
+    http_response_code(400);
     header('Content-Type: application/json');
-    echo '{"error":"wrong parameter! parameter url is required."}';
+    echo '{"code":"400","message":"Wrong parameter! Parameter url is required."}';
 }
