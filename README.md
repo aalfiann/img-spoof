@@ -29,9 +29,11 @@ This is a very simple and fast to get an image with spoofing referer.
 - **url** : URL Image target.
 - **referer** : Set the referer image. [`optional`]
 - **mime** : Set the mime type of image (ex: png). [`optional`]
+- **v** : Set the version to refresh cache. [`optional`]
 
 **Note:**  
 - Mime type will detect automatically if the url included extension.
+- jQuery Ajax `cache: false` will detected automatically.
 
 ## Example
 

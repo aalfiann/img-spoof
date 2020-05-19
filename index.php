@@ -49,8 +49,12 @@ if(!empty($_GET['url'])) {
 
     $parse = parse_url($url);
     
+    $versioning = (empty($_GET['v'])?'':rawurldecode($_GET['v']));
+    $jquery_cache = (empty($_GET['_'])?'':rawurldecode($_GET['_']));
     $referer = (empty($_GET['referer'])?'':rawurldecode($_GET['referer']));
-    $etag = 'W/"'.md5($url.$referer.$mime).'"';
+    
+    $expires = (time() + $maxage);
+    $etag = '"'.md5($url.$referer.$mime.$jquery_cache.$versioning).'"';
     if(isset($_SERVER['HTTP_IF_NONE_MATCH']) && trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) { 
         header("HTTP/1.1 304 Not Modified"); 
         exit;
@@ -88,7 +92,7 @@ if(!empty($_GET['url'])) {
         header("Content-Type: image/".$mime);
         header("Content-Length: ".$lsize);
         header("Cache-Control: public, max-age=".$maxage);
-        header("Expires: ".gmdate('D, d M Y H:i:s',(time() + $maxage))." GMT");
+        header("Expires: ".gmdate('D, d M Y H:i:s',$expires)." GMT");
         header('Etag: '.$etag);
         header("Sec-Fetch-Dest: image");
         header("Pragma: public");
