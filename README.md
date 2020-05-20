@@ -6,10 +6,13 @@
 
 This is a very simple and fast to get an image with spoofing referer.
 
-## Feature
-- Spoofing referer
-- Cache in browser
-- Firewall request
+## Features
+- **Spoofing Image Referer**
+  You are able to get a protected remote image by spoofing it. 
+- **Shared Proxy Cache**
+  A remote image is not downloaded but will be saved on client browser or proxy cache.
+- **Firewall Request**
+  You are able to set this service to work on spesific domain only (protected from direct access).
 
 ## Installation
 

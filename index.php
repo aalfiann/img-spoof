@@ -93,7 +93,7 @@ if(!empty($_GET['url'])) {
         header("HTTP/1.1 200 OK");
         header("Content-Type: image/".$mime);
         header("Content-Length: ".$lsize);
-        header("Cache-Control: public, max-age=".$maxage);
+        header("Cache-Control: public, must-revalidate, max-age=".$maxage);
         header("Expires: ".gmdate('D, d M Y H:i:s',$expires)." GMT");
         header('Etag: '.$etag);
         header("Sec-Fetch-Dest: image");
